@@ -1,0 +1,52 @@
+<div class="container caja">
+  <button class="btn btn-outline-success" (click)="crearPersonal()">
+    Crear Nuevo <span class="fa fa-plus"></span>
+  </button>
+  <ng-template #loading>
+    <img
+      class="img-fluid rounded mx-auto d-block"
+      src="/assets/img/loading.gif"
+      alt="Cargando..."
+      style="width: 300px"
+    />
+  </ng-template>
+  <h2 class="text-center">Personal</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Email</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template [ngIf]="datos" [ngIfElse]="loading">
+        <tr *ngFor="let item of datos">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.apellido }}</td>
+          <td>{{ item.correo }}</td>
+          <td>{{ item.telefono }}</td>
+          <td *ngIf="item.estado == 1" class="table-success text-center">
+            <i class="far fa-check-circle"></i>
+          </td>
+          <td *ngIf="item.estado == 0" class="table-danger text-center">
+            <i class="far fa-times-circle"></i>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-primary"
+              (click)="actualizarPersonal(item.id)"
+            >
+              Editar<i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

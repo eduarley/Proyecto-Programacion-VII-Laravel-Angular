@@ -1,0 +1,17 @@
+<div class="container caja">
+  <div class="container-fluid" margen>
+    <div class="row my-2">
+      <div class="col-md-3 my-3" *ngFor="let item of datos">
+        <!-- Información de personal -->
+        <div class="card border-info mb-3">
+          <div class="card-body">
+            <h4 class="card-title">{{ item.nombre }}</h4>
+            <h4 class="card-title">{{ item.apellido }}</h4>
+            <a class="btn btn-info" [routerLink]="['/personal/', item.id]" routerLinkActive="active">Ver más <i
+                class="fas fa-angle-double-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

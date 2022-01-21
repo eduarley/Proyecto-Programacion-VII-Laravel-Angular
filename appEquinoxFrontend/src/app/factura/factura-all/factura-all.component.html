@@ -1,0 +1,37 @@
+<div class="container caja">
+  <button class="btn btn-outline-success" (click)="crearFactura()">
+    Crear Factura Nueva <span class="fa fa-plus"></span>
+  </button>
+  <ng-template #loading>
+    <img
+      class="img-fluid rounded mx-auto d-block"
+      src="/assets/img/loading.gif"
+      alt="Cargando..."
+      style="width: 300px"
+    />
+  </ng-template>
+  <h2 class="text-center">Factura</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Pedido</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Total</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template [ngIf]="datos" [ngIfElse]="loading">
+        <tr *ngFor="let item of datos">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.pedido_id }}</td>
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.fecha | date: "dd/MM/yyyy" }}</td>
+          <td>{{ item.total | number: "3.2-5" }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

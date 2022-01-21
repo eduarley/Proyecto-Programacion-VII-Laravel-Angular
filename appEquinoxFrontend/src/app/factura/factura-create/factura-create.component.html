@@ -1,0 +1,52 @@
+
+<div class="row justify-content-center margen" style="margin-right: 0px;">
+  <div class="col-md-11">
+    <div class="container">
+      <form [formGroup]="formCreate" (ngSubmit)="submitForm()" novalidate>
+        <div class="row justify-content-center margen">
+          <!--Formulario información-->
+          <div class="col-md-6 caja">
+            <p class="lead text-center"><b>Crear Factura</b> </p>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="nombre">Fecha</label>
+              <div class="col-sm-8">
+                <p class="card-text">{{ fecha | date: "dd/MM/yyyy" }}</p>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="apellido">Usuario ID</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="user_id" name="user_id"  readonly/>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" >Pedido ID</label>
+              <div class="col-sm-8">
+                <select class="form-control" formControlName="pedido_id">
+                  <option *ngFor="let pedido of pedidos" [value]="pedido.id">
+                    {{ pedido.id }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col-md-10 mb-3">
+              <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-outline-success">
+                  Facturar <i class="fa fa-save"></i>
+                </button>
+                <button type="button" class="btn btn-outline-info" (click)="onBack()">
+                  Regresar <i class="fas fa-undo"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

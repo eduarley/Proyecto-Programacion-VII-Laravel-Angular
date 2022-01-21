@@ -1,0 +1,66 @@
+<!--div>
+  <div class="container margen">
+    <div class="row my-4">
+      <div class="col" *ngIf="datos?.id">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-6 shadow-sm h-md-250">
+          <div class="col p-4 d-flex flex-column position-static">
+            <img src="https://cdn.pixabay.com/photo/2016/03/23/20/49/music-note-1275650_1280.png" alt="Foto"
+              class="img-thumbnail rounded float-left" />
+          </div>
+          <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0 text-primary">{{ datos.nombre }}</h3>
+
+            <br />
+            <p class="card-text"><b>ID: </b>{{ datos.id }}</p>
+            <p class="card-text"><b>Descripción: </b>{{ datos.descripcion }}</p>
+            <p class="card-text"><b>Precio: </b>₡{{ datos.precio}}</p>
+            <p *ngIf="datos.estado==1"><b>Estado: </b>Activo</p>
+            <p class="card-text"><b>Marca: </b>{{ datos.marca.descripcion}}</p>
+            <p class="lead">Categorías</p>
+            <ul>
+              <li *ngFor="let item of datos.categorias">{{item.descripcion}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div-->
+<div id="container">
+
+<div class="col-md-12">
+
+</div>
+  <div class="product-details">
+    <h1>{{datos.nombre}}</h1>
+    <!--span class="hint-star star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+      <i class="fa fa-star-o" aria-hidden="true"></i>
+    </span-->
+    <p class="information"><b>ID:</b> {{datos.id}}</p>
+    <p class="information"> <b>Descripción</b> "{{datos.descripcion}}"</p>
+    <p class="information"><b>Precio:</b> ₡{{datos.precio}}</p>
+    <p class="information"><b>Marca:</b> {{datos.marca.descripcion}}</p>
+  </div>
+
+
+
+  <div class="product-image">
+
+    <img src="../../../assets/img/backgroundEquinox.png"
+      alt="Omar Dsoky">
+
+
+    <div class="info">
+      <h2 class="mt-5">Categorías</h2>
+      <ul>
+        <li *ngFor="let item of datos.categorias">{{item.descripcion}}</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>

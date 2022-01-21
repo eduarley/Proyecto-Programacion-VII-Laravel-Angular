@@ -1,0 +1,1117 @@
+{
+	"info": {
+		"_postman_id": "92fd7a3d-95c7-4457-9365-30ef82eeea28",
+		"name": "API Equinox full",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Rol",
+			"item": [
+				{
+					"name": "Listar los roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}rol",
+							"host": [
+								"{{base_url}}rol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar un rol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}rol/2",
+							"host": [
+								"{{base_url}}rol"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Listar los usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user",
+							"host": [
+								"{{base_url}}user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar un usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/3",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}auth/register?name=prueba&email=prueba4@gmail.com&password=123456&rol_id=2",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "prueba"
+								},
+								{
+									"key": "email",
+									"value": "prueba4@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "rol_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}auth/login/?email=jm@gmail.com&password=123456",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"login",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jm@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}auth/logout",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Personal",
+			"item": [
+				{
+					"name": "Listar el personal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}personal/all",
+							"host": [
+								"{{base_url}}personal"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar un personal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}personal/1/",
+							"host": [
+								"{{base_url}}personal"
+							],
+							"path": [
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index de personal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}personal/",
+							"host": [
+								"{{base_url}}personal"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear personal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "Nayely",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "Sandi",
+									"type": "text"
+								},
+								{
+									"key": "correo",
+									"value": "nsm@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "telefono",
+									"value": "60124569",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "vehiculo_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}personal",
+							"host": [
+								"{{base_url}}personal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar personal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "Nayely",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "Sandi",
+									"type": "text"
+								},
+								{
+									"key": "correo",
+									"value": "nsm@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "telefono",
+									"value": "60124569",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "vehiculo_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}personal/1",
+							"host": [
+								"{{base_url}}personal"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Vehiculo",
+			"item": [
+				{
+					"name": "Lista de vehiculos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Prueba de usuario",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "1324@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "13241324",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "rol_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}vehiculo/",
+							"host": [
+								"{{base_url}}vehiculo"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar un vehiculo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}vehiculo/3",
+							"host": [
+								"{{base_url}}vehiculo"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Listar pedidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}pedido/all/",
+							"host": [
+								"{{base_url}}pedido"
+							],
+							"path": [
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar un pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}pedido/1/",
+							"host": [
+								"{{base_url}}pedido"
+							],
+							"path": [
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index de pedidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}pedido/",
+							"host": [
+								"{{base_url}}pedido"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cedula_cliente",
+									"value": "201230852",
+									"type": "text"
+								},
+								{
+									"key": "nombre_completo_cliente",
+									"value": "Berlín Gonzáles",
+									"type": "text"
+								},
+								{
+									"key": "telefono_cliente",
+									"value": "25641023",
+									"type": "text"
+								},
+								{
+									"key": "tipo_pedido",
+									"value": "Pasa a retirar",
+									"type": "text"
+								},
+								{
+									"key": "fecha",
+									"value": "2020-10-21",
+									"type": "text"
+								},
+								{
+									"key": "direccion",
+									"value": "Frente al Maxi Palí de Grecia",
+									"type": "text"
+								},
+								{
+									"key": "subtotal",
+									"value": "450000",
+									"type": "text"
+								},
+								{
+									"key": "impuesto",
+									"value": "58500",
+									"type": "text"
+								},
+								{
+									"key": "envio",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "508500",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "pendiente",
+									"type": "text"
+								},
+								{
+									"key": "provincia_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "personal_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}pedido/storeapi",
+							"host": [
+								"{{base_url}}pedido"
+							],
+							"path": [
+								"storeapi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un detalle del pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pedido_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "producto_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "cantidad",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "450000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}detallepedido",
+							"host": [
+								"{{base_url}}detallepedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar pedidos listos para facturar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}pedido/alllisto",
+							"host": [
+								"{{base_url}}pedido"
+							],
+							"path": [
+								"alllisto"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Lista Productos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}producto/all",
+							"host": [
+								"{{base_url}}producto"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}producto/1",
+							"host": [
+								"{{base_url}}producto"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index de Producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}producto",
+							"host": [
+								"{{base_url}}producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "descripcion prueba",
+									"type": "text"
+								},
+								{
+									"key": "precio",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "marca_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categoria_id[1]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categoria_id[2]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categoria_id[3]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}producto/",
+							"host": [
+								"{{base_url}}producto"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "aaaaaaaaaaaaaaaaaaaaa",
+									"type": "text"
+								},
+								{
+									"key": "precio",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "estado",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "marca_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categoria_id[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categoria_id[1]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}producto/5",
+							"host": [
+								"{{base_url}}producto"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Marca",
+			"item": [
+				{
+					"name": "Lista Marcas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}marca",
+							"host": [
+								"{{base_url}}marca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Marca",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}marca/1",
+							"host": [
+								"{{base_url}}marca"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Lista Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}categoria",
+							"host": [
+								"{{base_url}}categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}categoria/1",
+							"host": [
+								"{{base_url}}categoria"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Provincia",
+			"item": [
+				{
+					"name": "Lista Provincias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}provincia",
+							"host": [
+								"{{base_url}}provincia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Provincia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}provincia/1",
+							"host": [
+								"{{base_url}}provincia"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Factura",
+			"item": [
+				{
+					"name": "Crear factura",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pedido_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "fecha",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}factura/",
+							"host": [
+								"{{base_url}}factura"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar facturas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}factura/all",
+							"host": [
+								"{{base_url}}factura"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,125 @@
+<div class="row justify-content-center margen">
+  <div class="col-md-11">
+    <ng-template #loading>
+      <img class="img-fluid rounded mx-auto d-block" src="/assets/img/loading.gif" alt="Cargando..."
+        style="width: 300px" />
+    </ng-template>
+    <ng-template [ngIf]="producto" [ngIfElse]="loading">
+      <div class="container">
+      <form [formGroup]="formUpdate" (ngSubmit)="submitForm()" novalidate>
+        <div class="row justify-content-center margen">
+          <!--Formulario información-->
+          <div class="col-md-6 caja">
+            <p  class="lead text-center"><b>Actualizar Producto</b> </p>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="nombre">ID:
+              </label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" formControlName="id" name="id" readonly="readonly" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="nombre">Nombre
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="nombre" name="nombre"
+                  placeholder="Nombre producto" />
+              </div>
+              <div class="col-auto">
+                <small *ngIf="errorHandling('nombre', 'required')" class="text-danger">
+                  El nombre del producto es requerido
+                </small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="descripcion">Descripción
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="descripcion" name="descripcion" />
+              </div>
+
+              <div class="col-sm-4">
+                <small *ngIf="errorHandling('descripcion', 'required')" class="text-danger">
+                  La descripción del producto es requerido
+                </small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="precio" class="col-sm-4 col-form-label">Precio</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="precio" formControlName="precio" />
+              </div>
+
+              <div class="col-auto">
+                <small *ngIf="errorHandling('precio', 'required')" class="text-danger">
+                  El precio del producto es requerido
+                </small>
+                <small *ngIf="errorHandling('precio', 'pattern')" class="text-danger">
+                  El precio debe contener solo números
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="marca_id">Marca</label>
+              <div class="col-sm-8">
+                <select class="form-control" formControlName="marca_id">
+                  <option *ngFor="let marca of marcas" [value]="marca.id">
+                    {{ marca.descripcion }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="categorias" class="col-sm-4 col-form-label">Categorías
+              </label>
+              <div class="col-sm-8">
+                <!--Array control genero-->
+                <div formArrayName="categorias">
+                  <!--Nombre del control con el indice y valor obtenido de la lista de categorias-->
+                  <!--Cada vez que cambia o se selecciona, debe actualizar el array que guarda los id de la categoria-->
+                  <div class="form-check" *ngFor="let p of categorias.controls; index as i">
+                    <input type="checkbox" class="form-check-input" [formControlName]="i" [value]="categoriasList[i]?.id"
+                      (change)="onCheckChange(categoriasList[i]?.id, $event)" />
+                    <label class="form-check-label">{{
+                            categoriasList[i]?.descripcion
+                          }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="estado">Estado</label>
+              <div class="col-sm-8">
+                <select class="form-control" formControlName="estado">
+                  <option value="1">Activo</option>
+                  <option value="0">Inactivo</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col-md-10 mb-3">
+              <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-outline-success">
+                  Guardar <i class="fa fa-save"></i>
+                </button>
+                <button type="reset" class="btn btn-outline-secondary" (click)="onReset()">
+                  Cancelar <i class="fa fa-times"></i>
+                </button>
+                <button type="button" class="btn btn-outline-info" (click)="onBack()">
+                  Regresar <i class="fas fa-undo"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+    </ng-template>
+  </div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="container margen">
+  <div class="row my-4">
+    <div class="col" *ngIf="datos?.id">
+      <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-6 shadow-sm h-md-250"
+      >
+        <div class="col p-4 d-flex flex-column position-static">
+          <img
+            src="../assets/img/perfil.png"
+            alt="Foto"
+            class="img-thumbnail rounded float-left"
+          />
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0 text-primary">{{ datos.nombre }}</h3>
+          <h3 class="mb-0 text-primary">{{ datos.apellido }}</h3>
+          <br />
+          <p class="card-text"><b>ID: </b>{{ datos.id }}</p>
+          <p class="card-text"><b>Email: </b>{{ datos.correo }}</p>
+          <p class="card-text"><b>Teléfono: </b>{{ datos.telefono }}</p>
+          <p *ngIf="datos.estado==1" class="card-text"><b>Estado: </b>Activo</p>
+          <p *ngIf="datos.estado==0" class="card-text"><b>Estado: </b>Inactivo</p>
+          <p class="card-text"><b>Vehículo: </b>{{ datos.vehiculo.placa }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

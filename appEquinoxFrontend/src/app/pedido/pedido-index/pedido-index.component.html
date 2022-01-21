@@ -1,0 +1,249 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="row card">
+      <div class="card-header">Pedido</div>
+      <div class="card-body">
+        <div class="col mb-3">
+          <p class="card-text">Fecha: {{ fecha | date: "dd/MM/yyyy" }}</p>
+        </div>
+
+        <div class="row col-md-12">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ID cliente"
+                  formControlName="cedula_cliente"
+                  name="cedula_cliente"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre completo"
+                  formControlName="nombre_completo_cliente"
+                  name="nombre_completo_cliente"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Teléfono"
+                  formControlName="telefono_cliente"
+                  name="telefono_cliente"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nombre" >Tipo</label>
+              <select
+                class="form-control col-sm-12 col-md-9"
+                
+                formControlName="tipo_pedido"
+                name="tipo_pedido"
+              >
+                <option value="Pasa a retirar">Local</option>
+                <option value="Express">Exprés</option>
+              </select>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-4 col-sm-8 col-lg-3 col-form-label"
+                >Provincia</label
+              >
+              <select
+                class="form-control col-sm-12 col-md-8 col-lg-9"
+                formControlName="provincia_id"
+                name="provincia_id"
+              >
+                <option
+                  *ngFor="let provincia of provincias"
+                  [value]="provincia.id"
+                >
+                  {{ provincia.descripcion }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group row mt-3">
+              <div class="col-md-12">
+                <textarea
+                  name="direccion"
+                  formControlName="direccion"
+                  cols="30"
+                  rows="1"
+                  placeholder="Dirección"
+                  class="form-control"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row card">
+    <div class="card-header">Detalle Pedido</div>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Videojuego</th>
+            <th class="right">Precio</th>
+            <th class="center">Cantidad</th>
+            <th class="right">SubTotal Detalle</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            class="group"
+            style="cursor: pointer"
+            *ngFor="let item of items; let i = index"
+          >
+            <td>
+              <p>{{ item.product.nombre }}</p>
+            </td>
+            <td class="right">
+              <p>₡{{ item.precio | number: "3.2-5" }}</p>
+            </td>
+            <td class="center">
+              <input
+                id="cantidad "
+                type="number"
+                class="form-control mb-2"
+                [(ngModel)]="item.cantidad"
+                (change)="actualizarCantidad(item)"
+              />
+            </td>
+
+            <td class="right">
+              <p>₡{{ item.subtotal | number: "3.2-5" }}</p>
+            </td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="eliminarItem(item)"
+              >
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row clearfix d-flex justify-content-end">
+        <div class="col-md-4">
+          <table class="table table-bordered table-hover">
+            <tbody>
+              <tr>
+                <td class="left">
+                  <strong>Subtotal</strong>
+                </td>
+                <td class="right">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">₡</div>
+                    </div>
+                    <input
+                      readonly
+                      type="text"
+                      class="form-control"
+                      id="total"
+                      type="text"
+                      [value]="subtotal | number: '3.2-5'"
+                    />
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="left">
+                  <strong>Envío</strong>
+                </td>
+                <td class="right">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">₡</div>
+                    </div>
+                    <input
+                      readonly
+                      type="text"
+                      class="form-control"
+                      id="total"
+                      type="text"
+                      [value]="envio | number: '3.2-5'"
+                    />
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="left">
+                  <strong>Impuesto 13%</strong>
+                </td>
+                <td class="right">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">₡</div>
+                    </div>
+                    <input
+                      readonly
+                      type="text"
+                      class="form-control"
+                      id="total"
+                      type="text"
+                      [value]="impuesto | number: '3.2-5'"
+                    />
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="left">
+                  <strong>Total</strong>
+                </td>
+                <td class="right">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">₡</div>
+                    </div>
+                    <input
+                      readonly
+                      type="text"
+                      class="form-control"
+                      id="total"
+                      type="text"
+                      [value]="total | number: '3.2-5'"
+                    />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col">
+            <button
+              style="font-size: 25px"
+              class="btn btn-success mb-2 float-right"
+              (click)="ordenar()"
+            >
+              Ordenar <i class="far fa-handshake"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

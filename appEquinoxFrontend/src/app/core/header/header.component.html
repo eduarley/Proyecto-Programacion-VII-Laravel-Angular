@@ -1,0 +1,157 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+  style="
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  "
+>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">
+      <img
+        style="height: 50px"
+        src="../../../assets/img/equinox logo blanco.png"
+      /> </a
+    ><!--h1 style="font: bold; color: white;">Equinox</h1-->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-left">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/home/acercade"
+            routerLinkActive="active"
+            >Acerca de
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="producto/index"
+            routerLinkActive="active"
+            >Instrumentos
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Mantenimientos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a
+              class="dropdown-item"
+              [routerLink]="['/personal/all']"
+              routerLinkActive="active"
+            >
+              Gestión de Personal
+            </a>
+
+            <a
+              class="dropdown-item"
+              [routerLink]="['/producto/all']"
+              routerLinkActive="active"
+            >
+              Gestión de Productos
+            </a>
+
+            <a
+              class="dropdown-item"
+              [routerLink]="['/pedido/all']"
+              routerLinkActive="active"
+            >
+              Gestión de Pedidos
+            </a>
+
+            <a
+              class="dropdown-item"
+              [routerLink]="['/factura/all']"
+              routerLinkActive="active"
+            >
+              Facturación
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/pedido/index"
+            routerLinkActive="active"
+            class="nav-link"
+            ><i class="fas fa-shopping-cart"></i>
+            <span class="badge badge-light ml-2">{{ qtyItems }}</span></a
+          >
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li
+          class="nav-item dropdown"
+          ngbDropdown
+          placement="bottom-right"
+          display="dynamic"
+        >
+          <a
+            class="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>
+              <i class="far fa-user-circle"></i>
+              <i *ngIf="isAutenticated"> {{ currentUser.user.name }}</i>
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-item" *ngIf="isAutenticated">
+              <div class="form-group">{{ currentUser.user.name }}</div>
+              <div class="form-group">{{ currentUser.user.email }}</div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a
+              style="cursor: pointer"
+              class="dropdown-item"
+              routerLink="usuario/login"
+              *ngIf="!isAutenticated"
+              ><i class="fas fa-user"></i> Login</a
+            >
+            <a
+              class="dropdown-item"
+              (click)="logout()"
+              *ngIf="isAutenticated"
+              style="cursor: pointer"
+              ><i class="fas fa-sign-out-alt"></i> Logout</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

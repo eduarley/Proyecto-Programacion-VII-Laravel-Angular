@@ -1,0 +1,76 @@
+<div class="container caja">
+
+  <ng-template #loading>
+    <img
+      class="centrar"
+      src="/assets/img/loading.gif"
+      alt="Cargando..."
+      style="width: 300px"
+    />
+  </ng-template>
+
+  <h2 class="text-center">Pedidos</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Personal</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Total</th>
+        <th scope="col">Estado</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template [ngIf]="datos" [ngIfElse]="loading">
+        <tr *ngFor="let item of datos">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.nombre_completo_cliente }}</td>
+
+          <td *ngIf="item.personal_id == null && item.tipo_pedido == 'Express'"  class="table-warning text-center">
+            Sin asignar
+          </td>
+          <td *ngIf="item.personal_id == null && item.tipo_pedido != 'Express'" class="table-active text-center">
+            No aplica
+          </td>
+          <td *ngIf="item.personal_id != null" class="table-success text-center">{{ item.personal.nombre }} </td>
+
+          <td>{{ item.fecha | date: "dd/MM/yyyy" }}</td>
+          <td>₡{{ item.total | number: "3.2-5" }}</td>
+          <td>{{ item.estado }}</td>
+
+          <td *ngIf="item.estado != 'Listo para facturar'">
+            <button
+              class="btn btn-outline-primary"
+              (click)="actualizarEstado(item)"
+
+            >
+              Listo para facturar<i class="fas fa-file-invoice-dollar ml-2"></i>
+            </button>
+          </td>
+
+
+
+
+          <td *ngIf="item.estado == 'Listo para facturar'">
+            <p></p>
+          </td>
+
+          <td *ngIf="item.tipo_pedido == 'Express' && item.personal_id != 0">
+            <button
+              class="btn btn-outline-success"
+              (click)="asignarPersonal(item.id)"
+            >
+              Asignar personal<i class="fas fa-people-arrows ml-2"></i>
+            </button>
+          </td>
+          <td *ngIf="item.tipo_pedido != 'Express' && item.personal_id == null">
+            <p></p>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,29 @@
+<ng-template #loading>
+  <img
+    class="img-fluid rounded mx-auto d-block"
+    src="/assets/img/loading.gif"
+    alt="Cargando..."
+    style="width: 300px"
+  />
+</ng-template>
+
+<ng-template [ngIf]="datos" [ngIfElse]="loading">
+  <main class="page-content">
+    <div class="card" *ngFor="let item of datos">
+      <div class="content">
+        <h2 class="title">{{ item.nombre }}</h2>
+
+        <p class="copy">{{ item.precio }}</p>
+        <a
+          class="btn"
+          [routerLink]="['/producto/', item.id]"
+          routerLinkActive="active"
+          >Ver más <i class="fas fa-angle-double-right"></i>
+        </a>
+        <button class="btn btn-warning" (click)="agregarProducto(item.id)">
+          <i class="fas fa-cart-plus"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+</ng-template>

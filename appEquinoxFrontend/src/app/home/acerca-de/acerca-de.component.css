@@ -1,0 +1,17 @@
+.padre {
+  padding: 0 1rem;
+  margin: 1rem;
+}
+
+.hijo_uno {
+  /* IMPORTANTE */
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hijo_dos {
+  /* IMPORTANTE */
+  width: 200px;
+  margin: 0 auto;
+}

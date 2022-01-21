@@ -1,0 +1,102 @@
+<div style="margin-right: 0px" class="row justify-content-center margen">
+  <div class="col-md-11">
+    <ng-template #loading>
+      <img
+        class="img-fluid rounded mx-auto d-block"
+        src="/assets/img/loading.gif"
+        alt="Cargando..."
+        style="width: 300px"
+      />
+    </ng-template>
+    <ng-template [ngIf]="pedido" [ngIfElse]="loading">
+      <div class="container">
+        <form [formGroup]="formUpdate" (ngSubmit)="submitForm()" novalidate>
+          <div class="row justify-content-center margen">
+            <!--Formulario información-->
+            <div class="col-md-6 caja">
+              <p class="lead text-center"><b>Estado del Pedido</b></p>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="id">ID </label>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="id"
+                    name="id"
+                    readonly
+                  />
+                </div>
+                <div class="col-auto">
+                  <small
+                    *ngIf="errorHandling('id', 'required')"
+                    class="text-danger"
+                  >
+                    El id del pedido es requerido
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="estado"
+                  >Estado</label
+                >
+                <div class="col-sm-8" *ngIf="entrega == 'Express'">
+                  <select class="form-control" formControlName="estado">
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="personal_id"
+                  >Vehículo
+                </label>
+                <div class="col-sm-8">
+                  <select class="form-control" formControlName="personal_id">
+                    <option
+                      *ngFor="let personal of personals"
+                      [value]="personal.id"
+                    >
+                      {{ personal.nombre }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <small
+                    *ngIf="errorHandling('vehiculo_id', 'required')"
+                    class="text-danger"
+                  >
+                    El vehículo es requerido
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-md-10 mb-3">
+                <div class="btn-group" role="group">
+                  <button type="submit" class="btn btn-outline-success">
+                    Guardar <i class="fa fa-save"></i>
+                  </button>
+                  <button
+                    type="reset"
+                    class="btn btn-outline-secondary"
+                    (click)="onReset()"
+                  >
+                    Cancelar <i class="fa fa-times"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-info"
+                    (click)="onBack()"
+                  >
+                    Regresar <i class="fas fa-undo"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</div>
